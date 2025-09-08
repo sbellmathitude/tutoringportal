@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { User, UserRole, SessionNote, Student } from '../types';
+import { User, UserRole, SessionNote } from '../types';
 import { SESSION_NOTES, STUDENTS } from '../constants';
 import DataTable from '../components/DataTable';
 

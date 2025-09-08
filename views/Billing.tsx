@@ -107,7 +107,7 @@ const TutorBilling: React.FC = () => {
 
     const columns = [
         { header: 'Date', accessor: (row: Transaction) => row.date },
-        { header: 'Payer', accessor: (row: Transaction) => USERS[UserRole.Parent].name /* Mocking parent name */ },
+        { header: 'Payer', accessor: (_row: Transaction) => USERS[UserRole.Parent].name /* Mocking parent name */ },
         { header: 'Amount', accessor: (row: Transaction) => `$${row.amount.toFixed(2)}` },
         { header: 'Status', accessor: (row: Transaction) => row.status },
         {

@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { User, UserRole, SessionNote, Transaction, ScheduleEvent } from '../types';
+import { User, UserRole } from '../types';
 import { SESSION_NOTES, TRANSACTIONS, SCHEDULE_EVENTS, STUDENTS } from '../constants';
 import DashboardCard from '../components/DashboardCard';
 import { CalendarIcon, BillingIcon, NotesIcon, UsersIcon } from '../components/icons/IconComponents';

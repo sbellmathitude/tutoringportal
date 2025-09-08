@@ -1,5 +1,5 @@
 
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import { UploadIcon } from '../components/icons/IconComponents';
 import { UPLOADED_FILES } from '../constants';
 import type { UploadedFile } from '../types';
