@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import DataTable from '../components/DataTable';
 import type { Student } from '../types';
@@ -13,10 +14,6 @@ const Students: React.FC<StudentsProps> = ({ students }) => {
     {
       header: 'Name',
       accessor: (row: Student) => <span className="font-medium text-neutral-dark">{row.name}</span>,
-    },
-    {
-      header: 'Subject',
-      accessor: (row: Student) => row.subject,
     },
     {
       header: 'Last Session',

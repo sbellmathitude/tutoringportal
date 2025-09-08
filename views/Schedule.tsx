@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import { ScheduleEvent } from '../types';
 import { SCHEDULE_EVENTS } from '../constants';
@@ -22,7 +23,6 @@ const Schedule: React.FC = () => {
                 eventsByDay[day].map(event => (
                   <div key={event.id} className="bg-indigo-50 border-l-4 border-brand-primary p-3 rounded-r-lg">
                     <p className="font-bold text-neutral-dark">{event.studentName}</p>
-                    <p className="text-sm text-gray-600">{event.subject}</p>
                     <p className="text-sm text-gray-500 mt-1">{event.time}</p>
                   </div>
                 ))

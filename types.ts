@@ -1,4 +1,5 @@
 
+
 export enum UserRole {
   Tutor = 'Tutor',
   Parent = 'Parent',
@@ -19,7 +20,6 @@ export interface Student {
   id: string;
   name: string;
   parentId: string;
-  subject: string;
   lastSession: string;
   googleSheetUrl: string;
 }
@@ -28,7 +28,6 @@ export interface SessionNote {
   id: string;
   studentId: string;
   date: string;
-  subject: string;
   topicsCovered: string[];
   notes: string;
 }
@@ -46,7 +45,6 @@ export interface Transaction {
 export interface ScheduleEvent {
   id: string;
   studentName: string;
-  subject: string;
   time: string; // e.g., "9:00 AM - 10:00 AM"
   day: 'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday';
 }

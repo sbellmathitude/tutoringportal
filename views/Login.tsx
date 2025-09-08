@@ -1,4 +1,5 @@
 
+
 import React, { useState } from 'react';
 import { UserRole } from '../types';
 import Modal from '../components/Modal';
@@ -12,7 +13,6 @@ export interface SignUpFormData {
     parentName: string;
     parentEmail: string;
     childName: string;
-    subject: string;
 }
 
 const RoleCard: React.FC<{
@@ -37,7 +37,6 @@ const SignUpForm: React.FC<{
         parentName: '',
         parentEmail: '',
         childName: '',
-        subject: 'Algebra II',
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -49,8 +48,6 @@ const SignUpForm: React.FC<{
         e.preventDefault();
         onSubmit(formData);
     };
-    
-    const subjects = ['Algebra II', 'Chemistry', 'English Literature', 'Physics', 'Calculus', 'Biology'];
 
     return (
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -65,12 +62,6 @@ const SignUpForm: React.FC<{
              <div>
                 <label className="block text-sm font-medium text-gray-700">Child's Full Name</label>
                 <input type="text" name="childName" value={formData.childName} onChange={handleChange} required className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-brand-primary focus:border-brand-primary"/>
-            </div>
-             <div>
-                <label className="block text-sm font-medium text-gray-700">Subject</label>
-                <select name="subject" value={formData.subject} onChange={handleChange} className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-brand-primary focus:border-brand-primary">
-                    {subjects.map(s => <option key={s} value={s}>{s}</option>)}
-                </select>
             </div>
             <div className="pt-4 flex justify-end space-x-3">
              <button type="button" onClick={onClose} className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none">Cancel</button>

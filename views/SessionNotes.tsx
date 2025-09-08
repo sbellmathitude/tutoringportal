@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import { User, UserRole, SessionNote, Student } from '../types';
 import { SESSION_NOTES } from '../constants';
@@ -29,7 +30,6 @@ const SessionNotes: React.FC<SessionNotesProps> = ({ user, students }) => {
   const columns = [
     { header: 'Date', accessor: (row: SessionNote) => row.date },
     ...(user.role === UserRole.Tutor ? [{ header: 'Student', accessor: (row: SessionNote) => getStudentName(row.studentId) }] : []),
-    { header: 'Subject', accessor: (row: SessionNote) => row.subject },
     { header: 'Topics Covered', accessor: (row: SessionNote) => row.topicsCovered.join(', ') },
     { header: 'Notes', accessor: (row: SessionNote) => <p className="whitespace-normal">{row.notes}</p> },
   ];

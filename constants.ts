@@ -1,4 +1,5 @@
 
+
 import { User, UserRole, Student, SessionNote, Transaction, ScheduleEvent, UploadedFile } from './types';
 
 export const INITIAL_USERS: { [key in UserRole | string]: User } = {
@@ -28,16 +29,16 @@ export const INITIAL_USERS: { [key in UserRole | string]: User } = {
 };
 
 export const INITIAL_STUDENTS: Student[] = [
-  { id: 'student-1', name: 'Emily Smith', parentId: 'user-1', subject: 'Algebra II', lastSession: '2024-07-29', googleSheetUrl: '#' },
-  { id: 'student-2', name: 'Michael Johnson', parentId: 'user-3', subject: 'Chemistry', lastSession: '2024-07-28', googleSheetUrl: '#' },
-  { id: 'student-3', name: 'Sarah Williams', parentId: 'user-4', subject: 'English Literature', lastSession: '2024-07-30', googleSheetUrl: '#' },
-  { id: 'student-4', name: 'David Brown', parentId: 'user-5', subject: 'Physics', lastSession: '2024-07-27', googleSheetUrl: '#' },
+  { id: 'student-1', name: 'Emily Smith', parentId: 'user-1', lastSession: '2024-07-29', googleSheetUrl: '#' },
+  { id: 'student-2', name: 'Michael Johnson', parentId: 'user-3', lastSession: '2024-07-28', googleSheetUrl: '#' },
+  { id: 'student-3', name: 'Sarah Williams', parentId: 'user-4', lastSession: '2024-07-30', googleSheetUrl: '#' },
+  { id: 'student-4', name: 'David Brown', parentId: 'user-5', lastSession: '2024-07-27', googleSheetUrl: '#' },
 ];
 
 export const SESSION_NOTES: SessionNote[] = [
-  { id: 'note-1', studentId: 'student-1', date: '2024-07-29', subject: 'Algebra II', topicsCovered: ['Quadratic Equations', 'Complex Numbers'], notes: 'Emily is grasping quadratic equations well but needs more practice with factoring complex polynomials.' },
-  { id: 'note-2', studentId: 'student-1', date: '2024-07-22', subject: 'Algebra II', topicsCovered: ['Linear Inequalities'], notes: 'Reviewed graphing inequalities on a number line. Good progress.' },
-  { id: 'note-3', studentId: 'student-2', date: '2024-07-28', subject: 'Chemistry', topicsCovered: ['Stoichiometry', 'Balancing Equations'], notes: 'Michael struggles with multi-step stoichiometry problems. We will review this next session.' },
+  { id: 'note-1', studentId: 'student-1', date: '2024-07-29', topicsCovered: ['Quadratic Equations', 'Complex Numbers'], notes: 'Emily is grasping quadratic equations well but needs more practice with factoring complex polynomials.' },
+  { id: 'note-2', studentId: 'student-1', date: '2024-07-22', topicsCovered: ['Linear Inequalities'], notes: 'Reviewed graphing inequalities on a number line. Good progress.' },
+  { id: 'note-3', studentId: 'student-2', date: '2024-07-28', topicsCovered: ['Stoichiometry', 'Balancing Equations'], notes: 'Michael struggles with multi-step stoichiometry problems. We will review this next session.' },
 ];
 
 export const TRANSACTIONS: Transaction[] = [
@@ -49,11 +50,11 @@ export const TRANSACTIONS: Transaction[] = [
 ];
 
 export const SCHEDULE_EVENTS: ScheduleEvent[] = [
-    { id: 'se-1', studentName: 'Emily Smith', subject: 'Algebra II', time: '3:00 PM - 4:00 PM', day: 'Monday' },
-    { id: 'se-2', studentName: 'Michael Johnson', subject: 'Chemistry', time: '4:00 PM - 5:00 PM', day: 'Tuesday' },
-    { id: 'se-3', studentName: 'Sarah Williams', subject: 'English Lit', time: '5:00 PM - 6:00 PM', day: 'Tuesday' },
-    { id: 'se-4', studentName: 'David Brown', subject: 'Physics', time: '3:00 PM - 4:00 PM', day: 'Wednesday' },
-    { id: 'se-5', studentName: 'Emily Smith', subject: 'Algebra II', time: '3:00 PM - 4:00 PM', day: 'Thursday' },
+    { id: 'se-1', studentName: 'Emily Smith', time: '3:00 PM - 4:00 PM', day: 'Monday' },
+    { id: 'se-2', studentName: 'Michael Johnson', time: '4:00 PM - 5:00 PM', day: 'Tuesday' },
+    { id: 'se-3', studentName: 'Sarah Williams', time: '5:00 PM - 6:00 PM', day: 'Tuesday' },
+    { id: 'se-4', studentName: 'David Brown', time: '3:00 PM - 4:00 PM', day: 'Wednesday' },
+    { id: 'se-5', studentName: 'Emily Smith', time: '3:00 PM - 4:00 PM', day: 'Thursday' },
 ];
 
 export const UPLOADED_FILES: UploadedFile[] = [

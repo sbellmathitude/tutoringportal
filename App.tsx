@@ -1,4 +1,5 @@
 
+
 import React, { useState } from 'react';
 import { User, UserRole, Student } from './types';
 import { INITIAL_USERS, INITIAL_STUDENTS } from './constants';
@@ -35,7 +36,6 @@ const App: React.FC = () => {
         id: newStudentId,
         name: formData.childName,
         parentId: newParentId,
-        subject: formData.subject,
         lastSession: new Date().toISOString().split('T')[0],
         googleSheetUrl: '#' // Placeholder for the real CRM link
     };

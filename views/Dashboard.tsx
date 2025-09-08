@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import { User, UserRole, Student } from '../types';
 import { SESSION_NOTES, TRANSACTIONS, SCHEDULE_EVENTS } from '../constants';
@@ -83,7 +84,7 @@ const StudentDashboard: React.FC<{ user: User }> = ({ user }) => {
             <DashboardCard title="Your Next Session" icon={<CalendarIcon />}>
                 {nextSession ? (
                     <>
-                       <p className="text-gray-600"><strong>Subject:</strong> {nextSession.subject}</p>
+                       {/* FIX: Removed reference to non-existent 'subject' property. */}
                        <p className="text-gray-600"><strong>Time:</strong> {nextSession.day}, {nextSession.time}</p>
                     </>
                 ) : <p>No upcoming sessions scheduled.</p>}
