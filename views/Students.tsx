@@ -1,11 +1,14 @@
 
 import React from 'react';
-import { STUDENTS } from '../constants';
 import DataTable from '../components/DataTable';
 import type { Student } from '../types';
 import { ExternalLinkIcon } from '../components/icons/IconComponents';
 
-const Students: React.FC = () => {
+interface StudentsProps {
+    students: Student[];
+}
+
+const Students: React.FC<StudentsProps> = ({ students }) => {
   const columns = [
     {
       header: 'Name',
@@ -38,7 +41,7 @@ const Students: React.FC = () => {
   return (
     <div>
       <h2 className="text-3xl font-bold text-neutral-dark mb-6">Student Management (CRM)</h2>
-      <DataTable title="All Students" columns={columns} data={STUDENTS} />
+      <DataTable title="All Students" columns={columns} data={students} />
     </div>
   );
 };

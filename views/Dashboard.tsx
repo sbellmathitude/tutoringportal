@@ -1,15 +1,16 @@
 
 import React from 'react';
-import { User, UserRole } from '../types';
-import { SESSION_NOTES, TRANSACTIONS, SCHEDULE_EVENTS, STUDENTS } from '../constants';
+import { User, UserRole, Student } from '../types';
+import { SESSION_NOTES, TRANSACTIONS, SCHEDULE_EVENTS } from '../constants';
 import DashboardCard from '../components/DashboardCard';
 import { CalendarIcon, BillingIcon, NotesIcon, UsersIcon } from '../components/icons/IconComponents';
 
 interface DashboardProps {
   user: User;
+  students: Student[];
 }
 
-const TutorDashboard: React.FC = () => {
+const TutorDashboard: React.FC<{students: Student[]}> = ({ students }) => {
     const nextSession = SCHEDULE_EVENTS.sort((a,b) => a.day.localeCompare(b.day))[0];
     const recentTransaction = TRANSACTIONS.sort((a,b) => new Date(b.date).getTime() - new Date(a.date).getTime())[0];
     
@@ -21,7 +22,7 @@ const TutorDashboard: React.FC = () => {
                 <button className="mt-4 text-sm text-brand-primary font-semibold hover:underline">View Full Schedule</button>
             </DashboardCard>
             <DashboardCard title="Total Students" icon={<UsersIcon />}>
-                <p className="text-5xl font-bold text-neutral-dark">{STUDENTS.length}</p>
+                <p className="text-5xl font-bold text-neutral-dark">{students.length}</p>
                 <p className="text-gray-500">Actively enrolled</p>
             </DashboardCard>
             <DashboardCard title="Recent Transaction" icon={<BillingIcon />}>
@@ -91,11 +92,11 @@ const StudentDashboard: React.FC<{ user: User }> = ({ user }) => {
     );
 };
 
-const Dashboard: React.FC<DashboardProps> = ({ user }) => {
+const Dashboard: React.FC<DashboardProps> = ({ user, students }) => {
   const renderDashboard = () => {
     switch (user.role) {
       case UserRole.Tutor:
-        return <TutorDashboard />;
+        return <TutorDashboard students={students} />;
       case UserRole.Parent:
         return <ParentDashboard user={user} />;
       case UserRole.Student:

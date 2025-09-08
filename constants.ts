@@ -1,18 +1,20 @@
 
 import { User, UserRole, Student, SessionNote, Transaction, ScheduleEvent, UploadedFile } from './types';
 
-export const USERS: { [key in UserRole]: User } = {
+export const INITIAL_USERS: { [key in UserRole | string]: User } = {
   [UserRole.Tutor]: {
     id: 'user-0',
     name: 'Jane Doe',
     role: UserRole.Tutor,
     avatarUrl: 'https://picsum.photos/id/1027/100/100',
+    email: 'jane.doe@mathitude.com',
   },
   [UserRole.Parent]: {
     id: 'user-1',
     name: 'John Smith',
     role: UserRole.Parent,
     avatarUrl: 'https://picsum.photos/id/1005/100/100',
+    email: 'john.smith@example.com',
     childId: 'student-1',
   },
   [UserRole.Student]: {
@@ -20,11 +22,12 @@ export const USERS: { [key in UserRole]: User } = {
     name: 'Emily Smith',
     role: UserRole.Student,
     avatarUrl: 'https://picsum.photos/id/1011/100/100',
+    email: 'emily.smith@example.com',
     studentId: 'student-1',
   },
 };
 
-export const STUDENTS: Student[] = [
+export const INITIAL_STUDENTS: Student[] = [
   { id: 'student-1', name: 'Emily Smith', parentId: 'user-1', subject: 'Algebra II', lastSession: '2024-07-29', googleSheetUrl: '#' },
   { id: 'student-2', name: 'Michael Johnson', parentId: 'user-3', subject: 'Chemistry', lastSession: '2024-07-28', googleSheetUrl: '#' },
   { id: 'student-3', name: 'Sarah Williams', parentId: 'user-4', subject: 'English Literature', lastSession: '2024-07-30', googleSheetUrl: '#' },

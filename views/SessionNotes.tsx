@@ -1,14 +1,15 @@
 
 import React from 'react';
-import { User, UserRole, SessionNote } from '../types';
-import { SESSION_NOTES, STUDENTS } from '../constants';
+import { User, UserRole, SessionNote, Student } from '../types';
+import { SESSION_NOTES } from '../constants';
 import DataTable from '../components/DataTable';
 
 interface SessionNotesProps {
   user: User;
+  students: Student[];
 }
 
-const SessionNotes: React.FC<SessionNotesProps> = ({ user }) => {
+const SessionNotes: React.FC<SessionNotesProps> = ({ user, students }) => {
   const getNotes = () => {
     switch (user.role) {
       case UserRole.Tutor:
@@ -23,7 +24,7 @@ const SessionNotes: React.FC<SessionNotesProps> = ({ user }) => {
   };
 
   const notes = getNotes();
-  const getStudentName = (studentId: string) => STUDENTS.find(s => s.id === studentId)?.name || 'Unknown';
+  const getStudentName = (studentId: string) => students.find(s => s.id === studentId)?.name || 'Unknown';
 
   const columns = [
     { header: 'Date', accessor: (row: SessionNote) => row.date },

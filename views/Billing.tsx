@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { User, UserRole, Transaction } from '../types';
-import { TRANSACTIONS, USERS } from '../constants';
+import { TRANSACTIONS } from '../constants';
 import DataTable from '../components/DataTable';
 import Modal from '../components/Modal';
 import DashboardCard from '../components/DashboardCard';
@@ -10,6 +10,7 @@ import { ExternalLinkIcon, BillingIcon } from '../components/icons/IconComponent
 
 interface BillingProps {
   user: User;
+  users: { [key: string]: User };
 }
 
 const StripeForm: React.FC<{onClose: () => void}> = ({ onClose }) => (
@@ -90,7 +91,7 @@ const ParentBilling: React.FC<{ user: User }> = ({ user }) => {
   );
 };
 
-const TutorBilling: React.FC = () => {
+const TutorBilling: React.FC<{ users: { [key: string]: User } }> = ({ users }) => {
     const transactionData = TRANSACTIONS.reduce((acc, t) => {
         const month = new Date(t.date).toLocaleString('default', { month: 'short' });
         if(t.status === 'Paid') {
@@ -107,7 +108,7 @@ const TutorBilling: React.FC = () => {
 
     const columns = [
         { header: 'Date', accessor: (row: Transaction) => row.date },
-        { header: 'Payer', accessor: (_row: Transaction) => USERS[UserRole.Parent].name /* Mocking parent name */ },
+        { header: 'Payer', accessor: (row: Transaction) => users[row.parentId]?.name || 'Unknown User' },
         { header: 'Amount', accessor: (row: Transaction) => `$${row.amount.toFixed(2)}` },
         { header: 'Status', accessor: (row: Transaction) => row.status },
         {
@@ -141,11 +142,11 @@ const TutorBilling: React.FC = () => {
 };
 
 
-const Billing: React.FC<BillingProps> = ({ user }) => {
+const Billing: React.FC<BillingProps> = ({ user, users }) => {
   return (
     <div>
       <h2 className="text-3xl font-bold text-neutral-dark mb-6">Billing & Payments</h2>
-      {user.role === UserRole.Tutor ? <TutorBilling /> : <ParentBilling user={user} />}
+      {user.role === UserRole.Tutor ? <TutorBilling users={users}/> : <ParentBilling user={user} />}
     </div>
   );
 };
