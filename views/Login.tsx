@@ -12,7 +12,7 @@ interface LoginProps {
 export interface SignUpFormData {
     parentName: string;
     parentEmail: string;
-    childName: string;
+    childNames: string[];
 }
 
 const RoleCard: React.FC<{
@@ -33,40 +33,65 @@ const SignUpForm: React.FC<{
     onSubmit: (formData: SignUpFormData) => void;
     onClose: () => void;
 }> = ({ onSubmit, onClose }) => {
-    const [formData, setFormData] = useState<SignUpFormData>({
-        parentName: '',
-        parentEmail: '',
-        childName: '',
-    });
+    const [parentName, setParentName] = useState('');
+    const [parentEmail, setParentEmail] = useState('');
+    const [childName, setChildName] = useState('');
+    const [childNames, setChildNames] = useState<string[]>([]);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({ ...prev, [name]: value }));
+    const handleAddChild = () => {
+        if (childName.trim()) {
+            setChildNames([...childNames, childName.trim()]);
+            setChildName('');
+        }
+    };
+
+    const handleRemoveChild = (index: number) => {
+        setChildNames(childNames.filter((_, i) => i !== index));
     };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        onSubmit(formData);
+        if (childNames.length === 0) {
+            alert("Please add at least one child.");
+            return;
+        }
+        onSubmit({ parentName, parentEmail, childNames });
     };
 
     return (
         <form onSubmit={handleSubmit} className="space-y-4">
              <div>
                 <label className="block text-sm font-medium text-gray-700">Your Full Name</label>
-                <input type="text" name="parentName" value={formData.parentName} onChange={handleChange} required className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-brand-primary focus:border-brand-primary"/>
+                <input type="text" name="parentName" value={parentName} onChange={e => setParentName(e.target.value)} required className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-brand-primary focus:border-brand-primary"/>
             </div>
              <div>
                 <label className="block text-sm font-medium text-gray-700">Your Email</label>
-                <input type="email" name="parentEmail" value={formData.parentEmail} onChange={handleChange} required className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-brand-primary focus:border-brand-primary"/>
+                <input type="email" name="parentEmail" value={parentEmail} onChange={e => setParentEmail(e.target.value)} required className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-brand-primary focus:border-brand-primary"/>
             </div>
-             <div>
-                <label className="block text-sm font-medium text-gray-700">Child's Full Name</label>
-                <input type="text" name="childName" value={formData.childName} onChange={handleChange} required className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-brand-primary focus:border-brand-primary"/>
+            <div>
+                 <label className="block text-sm font-medium text-gray-700">Child's Full Name</label>
+                 <div className="mt-1 flex rounded-md shadow-sm">
+                    <input type="text" value={childName} onChange={e => setChildName(e.target.value)} className="flex-1 block w-full min-w-0 rounded-none rounded-l-md px-3 py-2 border-gray-300 focus:ring-brand-primary focus:border-brand-primary" />
+                    <button type="button" onClick={handleAddChild} className="inline-flex items-center px-3 py-2 border border-l-0 border-gray-300 bg-gray-50 text-gray-500 rounded-r-md hover:bg-gray-100">-&gt; Add</button>
+                 </div>
             </div>
+            {childNames.length > 0 && (
+                <div className="border rounded-md p-3 bg-gray-50">
+                    <h4 className="text-sm font-medium text-gray-600 mb-2">Children to enroll:</h4>
+                    <ul className="space-y-2">
+                        {childNames.map((name, index) => (
+                            <li key={index} className="flex justify-between items-center text-sm bg-white p-2 rounded shadow-sm">
+                                <span>{name}</span>
+                                <button type="button" onClick={() => handleRemoveChild(index)} className="text-red-500 hover:text-red-700 font-bold">X</button>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            )}
             <div className="pt-4 flex justify-end space-x-3">
              <button type="button" onClick={onClose} className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none">Cancel</button>
              <button type="submit" className="px-4 py-2 text-sm font-medium text-white bg-brand-primary border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none">Create Account</button>
-        </div>
+            </div>
         </form>
     );
 };

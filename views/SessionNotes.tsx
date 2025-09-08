@@ -15,8 +15,10 @@ const SessionNotes: React.FC<SessionNotesProps> = ({ user, students }) => {
     switch (user.role) {
       case UserRole.Tutor:
         return SESSION_NOTES;
-      case UserRole.Parent:
-        return SESSION_NOTES.filter(note => note.studentId === user.childId);
+      case UserRole.Parent: {
+        const childIds = user.studentIds || [];
+        return SESSION_NOTES.filter(note => childIds.includes(note.studentId));
+      }
       case UserRole.Student:
         return SESSION_NOTES.filter(note => note.studentId === user.studentId);
       default:
@@ -29,7 +31,7 @@ const SessionNotes: React.FC<SessionNotesProps> = ({ user, students }) => {
 
   const columns = [
     { header: 'Date', accessor: (row: SessionNote) => row.date },
-    ...(user.role === UserRole.Tutor ? [{ header: 'Student', accessor: (row: SessionNote) => getStudentName(row.studentId) }] : []),
+    ...(user.role !== UserRole.Student ? [{ header: 'Student', accessor: (row: SessionNote) => getStudentName(row.studentId) }] : []),
     { header: 'Topics Covered', accessor: (row: SessionNote) => row.topicsCovered.join(', ') },
     { header: 'Notes', accessor: (row: SessionNote) => <p className="whitespace-normal">{row.notes}</p> },
   ];

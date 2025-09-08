@@ -8,20 +8,27 @@ export enum UserRole {
 
 export interface User {
   id: string;
-  name: string;
+  name:string;
   role: UserRole;
   avatarUrl: string;
   email?: string;
-  studentId?: string; // For students
-  childId?: string; // For parents
+  studentId?: string; // For students logging in
+  studentIds?: string[]; // For parents
 }
 
 export interface Student {
   id: string;
   name: string;
-  parentId: string;
+  parentIds: string[];
   lastSession: string;
   googleSheetUrl: string;
+}
+
+// FIX: Add missing Family interface to resolve import error in MyFamily.tsx.
+export interface Family {
+  id: string;
+  parentIds: string[];
+  childIds: string[];
 }
 
 export interface SessionNote {
@@ -34,7 +41,7 @@ export interface SessionNote {
 
 export interface Transaction {
   id: string;
-  parentId: string;
+  studentId: string; // Changed from familyId
   date: string;
   amount: number;
   status: 'Paid' | 'Pending' | 'Overdue';

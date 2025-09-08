@@ -2,18 +2,28 @@
 
 import React from 'react';
 import DataTable from '../components/DataTable';
-import type { Student } from '../types';
+import type { Student, User } from '../types';
 import { ExternalLinkIcon } from '../components/icons/IconComponents';
 
 interface StudentsProps {
     students: Student[];
+    users: { [key: string]: User };
 }
 
-const Students: React.FC<StudentsProps> = ({ students }) => {
+const Students: React.FC<StudentsProps> = ({ students, users }) => {
+  const getParentNames = (student: Student): string => {
+    if (!student.parentIds || student.parentIds.length === 0) return 'N/A';
+    return student.parentIds.map(pid => users[pid]?.name || 'Unknown').join(', ');
+  };
+
   const columns = [
     {
       header: 'Name',
       accessor: (row: Student) => <span className="font-medium text-neutral-dark">{row.name}</span>,
+    },
+    {
+      header: 'Parents',
+      accessor: (row: Student) => getParentNames(row),
     },
     {
       header: 'Last Session',

@@ -36,10 +36,12 @@ const TutorDashboard: React.FC<{students: Student[]}> = ({ students }) => {
 };
 
 const ParentDashboard: React.FC<{ user: User }> = ({ user }) => {
-    const childNotes = SESSION_NOTES.filter(note => note.studentId === user.childId);
+    const childIds = user.studentIds || [];
+    const childNotes = SESSION_NOTES.filter(note => childIds.includes(note.studentId));
     const recentNote = childNotes[0];
-    const childTransactions = TRANSACTIONS.filter(t => t.parentId === user.id);
-    const lastPayment = childTransactions.find(t => t.status === 'Paid');
+    
+    const studentTransactions = TRANSACTIONS.filter(t => childIds.includes(t.studentId));
+    const lastPayment = studentTransactions.find(t => t.status === 'Paid');
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -50,7 +52,7 @@ const ParentDashboard: React.FC<{ user: User }> = ({ user }) => {
                         <p className="text-gray-600 mt-2 line-clamp-2"><strong>Notes:</strong> {recentNote.notes}</p>
                         <button className="mt-4 text-sm text-brand-primary font-semibold hover:underline">View All Notes</button>
                     </>
-                ) : <p>No session notes available.</p>}
+                ) : <p>No session notes available for your children.</p>}
             </DashboardCard>
             <DashboardCard title="Last Payment" icon={<BillingIcon />}>
                 {lastPayment ? (

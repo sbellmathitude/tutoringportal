@@ -29,30 +29,33 @@ const App: React.FC = () => {
   };
   
   const handleSignUp = (formData: SignUpFormData) => {
-    const newStudentId = `student-${Date.now()}`;
-    const newParentId = `user-${Date.now()}`;
+    const now = Date.now();
+    const newParentId = `user-${now}`;
+    const newStudentIds = formData.childNames.map((_, i) => `student-${now}-${i}`);
 
-    const newStudent: Student = {
-        id: newStudentId,
-        name: formData.childName,
-        parentId: newParentId,
+    // Create new student objects, linked to the new parent
+    const newStudents: Student[] = formData.childNames.map((name, i) => ({
+        id: newStudentIds[i],
+        name: name,
+        parentIds: [newParentId],
         lastSession: new Date().toISOString().split('T')[0],
-        googleSheetUrl: '#' // Placeholder for the real CRM link
-    };
+        googleSheetUrl: '#' // Placeholder
+    }));
 
+    // Create new parent user, linked to the new students
     const newParent: User = {
         id: newParentId,
         name: formData.parentName,
         email: formData.parentEmail,
         role: UserRole.Parent,
         avatarUrl: `https://i.pravatar.cc/100?u=${newParentId}`,
-        childId: newStudentId,
+        studentIds: newStudentIds,
     };
     
-    // Simulate updating the CRM/database
-    setStudents(prev => [...prev, newStudent]);
+    // Simulate updating the database
+    setStudents(prev => [...prev, ...newStudents]);
     setUsers(prev => ({...prev, [newParentId]: newParent }));
-
+    
     // Log the new user in
     setCurrentUser(newParent);
     setActiveView('dashboard');
@@ -71,9 +74,9 @@ const App: React.FC = () => {
       case 'schedule':
         return <Schedule />;
       case 'students':
-        return <Students students={students} />;
+        return <Students students={students} users={users} />;
       case 'billing':
-        return <Billing user={currentUser} users={users} />;
+        return <Billing user={currentUser} students={students} />;
       case 'session-notes':
         return <SessionNotes user={currentUser} students={students} />;
       case 'file-upload':
