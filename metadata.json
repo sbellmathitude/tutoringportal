@@ -1,0 +1,5 @@
+{
+  "name": "Mathitude Client Portal",
+  "description": "A client portal for the Mathitude tutoring business that allows parents and students to view session notes and upload files, and for parents to manage billing. The tutor can view their schedule, manage students, and analyze transactions.",
+  "requestFramePermissions": []
+}
