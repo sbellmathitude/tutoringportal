@@ -12,28 +12,28 @@ interface DataTableProps<T,> {
 
 const DataTable = <T,>({ columns, data, title }: DataTableProps<T>) => {
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden">
-      <h3 className="text-xl font-semibold p-6 text-neutral-dark">{title}</h3>
+    <div className="bg-white rounded-lg shadow-sm border border-neutral-medium/20 overflow-hidden">
+      <h3 className="text-xl font-bold p-6 text-neutral-dark">{title}</h3>
       <div className="overflow-x-auto">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
+        <table className="min-w-full divide-y divide-neutral-medium/20">
+          <thead className="bg-background">
             <tr>
               {columns.map((col, index) => (
                 <th
                   key={index}
                   scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  className="px-6 py-3 text-left text-xs font-bold text-neutral-medium uppercase tracking-wider"
                 >
                   {col.header}
                 </th>
               ))}
             </tr>
           </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
+          <tbody className="bg-white divide-y divide-neutral-medium/20">
             {data.map((row, rowIndex) => (
-              <tr key={rowIndex} className="hover:bg-gray-50">
+              <tr key={rowIndex} className="hover:bg-background">
                 {columns.map((col, colIndex) => (
-                  <td key={colIndex} className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                  <td key={colIndex} className="px-6 py-4 whitespace-nowrap text-sm text-neutral-dark">
                     {col.accessor(row)}
                   </td>
                 ))}
@@ -42,7 +42,7 @@ const DataTable = <T,>({ columns, data, title }: DataTableProps<T>) => {
           </tbody>
         </table>
          {data.length === 0 && (
-            <div className="text-center py-10 text-gray-500">No data available.</div>
+            <div className="text-center py-10 text-neutral-medium">No data available.</div>
         )}
       </div>
     </div>

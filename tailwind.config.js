@@ -7,12 +7,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        'brand-primary': '#4F46E5',
-        'brand-secondary': '#F97316',
-        'neutral-light': '#F8FAFC',
-        'neutral-medium': '#E2E8F0',
-        'neutral-dark': '#1E293B',
+        'primary': '#7030A0',
+        'neutral-dark': '#4a4649',
+        'neutral-medium': '#8b8589',
+        'white': '#FFFFFF',
+        'background': '#F9F9F9',
       },
+      fontFamily: {
+        sans: ['"Nunito Sans"', 'sans-serif'],
+        display: ['"Original Surfer"', 'cursive'],
+      }
     },
   },
   plugins: [],

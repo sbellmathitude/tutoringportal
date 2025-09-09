@@ -35,27 +35,27 @@ const FileUpload: React.FC = () => {
   return (
     <div className="space-y-6">
       <h2 className="text-3xl font-bold text-neutral-dark">Upload Files</h2>
-      <div className="bg-white p-6 rounded-lg shadow-md">
-        <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-            <div className="mx-auto h-12 w-12 text-gray-400">
+      <div className="bg-white p-6 rounded-lg shadow-sm border border-neutral-medium/20">
+        <div className="border-2 border-dashed border-neutral-medium/50 rounded-lg p-8 text-center">
+            <div className="mx-auto h-12 w-12 text-neutral-medium">
                 <UploadIcon />
             </div>
-            <label htmlFor="file-upload" className="mt-4 block text-sm font-semibold text-brand-primary cursor-pointer">
+            <label htmlFor="file-upload" className="mt-4 block text-sm font-bold text-primary cursor-pointer">
                 Choose files to upload
             </label>
             <input id="file-upload" name="file-upload" type="file" className="sr-only" multiple onChange={handleFileChange} />
-            <p className="mt-1 text-xs text-gray-500">PNG, JPG, PDF, DOCX up to 10MB</p>
+            <p className="mt-1 text-xs text-neutral-medium">PNG, JPG, PDF, DOCX up to 10MB</p>
         </div>
         
         {files.length > 0 && (
             <div className="mt-4">
-                <h4 className="font-semibold text-gray-700">Selected files:</h4>
-                <ul className="list-disc list-inside mt-2 text-sm text-gray-600">
+                <h4 className="font-bold text-neutral-dark">Selected files:</h4>
+                <ul className="list-disc list-inside mt-2 text-sm text-neutral-medium">
                     {files.map((file, index) => <li key={index}>{file.name}</li>)}
                 </ul>
                 <button 
                     onClick={handleUpload}
-                    className="mt-4 w-full px-4 py-2 text-sm font-medium text-white bg-brand-primary border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none">
+                    className="mt-4 w-full px-4 py-2 text-sm font-bold text-white bg-primary border border-transparent rounded-md shadow-sm hover:bg-primary/90 focus:outline-none">
                     Upload {files.length} file(s)
                 </button>
             </div>

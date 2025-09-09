@@ -18,12 +18,12 @@ const NavItem: React.FC<{
     onClick={onClick}
     className={`flex items-center p-3 my-1 rounded-md cursor-pointer transition-colors ${
       isActive
-        ? 'bg-brand-primary text-white'
-        : 'text-gray-600 hover:bg-indigo-100 hover:text-brand-primary'
+        ? 'bg-primary text-white'
+        : 'text-neutral-dark hover:bg-primary/10 hover:text-primary'
     }`}
   >
     {icon}
-    <span className="ml-3 font-medium">{label}</span>
+    <span className="ml-3 font-bold">{label}</span>
   </li>
 );
 
@@ -63,8 +63,8 @@ const Sidebar: React.FC<SidebarProps> = ({ userRole, activeView, setActiveView }
   const navItems = getNavItems();
 
   return (
-    <aside className="w-64 bg-white shadow-lg h-screen flex flex-col p-4">
-      <div className="text-2xl font-bold text-brand-primary p-3 mb-6">
+    <aside className="w-64 bg-white shadow-lg h-screen flex flex-col p-4 border-r border-neutral-medium/20">
+      <div className="text-3xl font-display text-primary p-3 mb-6">
         Mathitude
       </div>
       <nav>

@@ -19,7 +19,7 @@ const Students: React.FC<StudentsProps> = ({ students, users }) => {
   const columns = [
     {
       header: 'Name',
-      accessor: (row: Student) => <span className="font-medium text-neutral-dark">{row.name}</span>,
+      accessor: (row: Student) => <span className="font-bold text-neutral-dark">{row.name}</span>,
     },
     {
       header: 'Parents',
@@ -36,7 +36,7 @@ const Students: React.FC<StudentsProps> = ({ students, users }) => {
           href={row.googleSheetUrl} 
           target="_blank" 
           rel="noopener noreferrer" 
-          className="text-brand-primary hover:underline font-semibold"
+          className="text-primary hover:underline font-bold"
         >
           View Record
           <ExternalLinkIcon />

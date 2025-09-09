@@ -29,7 +29,7 @@ const ParentBilling: React.FC<{ user: User, students: Student[] }> = ({ user, st
     {
       header: 'Status',
       accessor: (row: Transaction) => (
-        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+        <span className="px-2 inline-flex text-xs leading-5 font-bold rounded-full bg-primary/10 text-primary">
           {row.status}
         </span>
       ),
@@ -40,30 +40,30 @@ const ParentBilling: React.FC<{ user: User, students: Student[] }> = ({ user, st
     <div className="space-y-6">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <DashboardCard title="Manage Payment Method" icon={<BillingIcon />}>
-            <p className="text-gray-600 mb-4">Securely save your credit card information with Stripe. Your payment method will be used for automatic billing of future charges.</p>
-            <div id="stripe-form-embed" className="bg-neutral-light p-4 rounded-md border">
+            <p className="text-neutral-medium mb-4">Securely save your credit card information with Stripe. Your payment method will be used for automatic billing of future charges.</p>
+            <div id="stripe-form-embed" className="bg-background p-4 rounded-md border border-neutral-medium/20">
                 {/* 
                     This is the designated area for your Stripe payment form embed.
                     You can inject your HTML form or use Stripe Elements here.
                 */}
-                <p className="text-sm text-gray-500 text-center">Stripe payment form will be embedded here.</p>
+                <p className="text-sm text-neutral-medium text-center">Stripe payment form will be embedded here.</p>
             </div>
         </DashboardCard>
         <DashboardCard title="Upcoming Charges" icon={<BillingIcon />}>
             {upcomingCharges.length > 0 ? (
                 <ul className="space-y-3">
                     {upcomingCharges.map(charge => (
-                        <li key={charge.id} className="flex justify-between items-center p-3 bg-gray-50 rounded-md">
+                        <li key={charge.id} className="flex justify-between items-center p-3 bg-background rounded-md">
                             <div>
-                                <p className="font-semibold text-neutral-dark">{charge.description}</p>
-                                <p className="text-sm text-gray-500">For: {getStudentName(charge.studentId)}</p>
-                                <p className="text-sm text-gray-500">Due: {charge.date}</p>
+                                <p className="font-bold text-neutral-dark">{charge.description}</p>
+                                <p className="text-sm text-neutral-medium">For: {getStudentName(charge.studentId)}</p>
+                                <p className="text-sm text-neutral-medium">Due: {charge.date}</p>
                             </div>
                             <div className="text-right">
                                 <p className="font-bold text-lg text-neutral-dark">${charge.amount.toFixed(2)}</p>
                                 <span
-                                  className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                                    charge.status === 'Pending' ? 'bg-yellow-100 text-yellow-800' : 'bg-red-100 text-red-800'
+                                  className={`px-2 inline-flex text-xs leading-5 font-bold rounded-full ${
+                                    charge.status === 'Pending' ? 'bg-neutral-medium/20 text-neutral-dark' : 'bg-red-100 text-red-800'
                                   }`}
                                 >
                                   {charge.status}
@@ -73,7 +73,7 @@ const ParentBilling: React.FC<{ user: User, students: Student[] }> = ({ user, st
                     ))}
                 </ul>
             ) : (
-                <p className="text-gray-500">No upcoming charges.</p>
+                <p className="text-neutral-medium">No upcoming charges.</p>
             )}
         </DashboardCard>
       </div>
@@ -106,7 +106,7 @@ const TutorBilling: React.FC<{ students: Student[] }> = ({ students }) => {
         {
           header: 'Stripe Link',
           accessor: (row: Transaction) => (
-            <a href={row.stripeUrl} target="_blank" rel="noopener noreferrer" className="text-brand-primary hover:underline font-semibold">
+            <a href={row.stripeUrl} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-bold">
               View on Stripe
               <ExternalLinkIcon />
             </a>
@@ -124,7 +124,7 @@ const TutorBilling: React.FC<{ students: Student[] }> = ({ students }) => {
                         <YAxis />
                         <Tooltip />
                         <Legend />
-                        <Bar dataKey="revenue" fill="#4F46E5" />
+                        <Bar dataKey="revenue" fill="#7030A0" />
                     </BarChart>
                 </ResponsiveContainer>
             </DashboardCard>

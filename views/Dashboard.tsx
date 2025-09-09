@@ -18,18 +18,18 @@ const TutorDashboard: React.FC<{students: Student[]}> = ({ students }) => {
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <DashboardCard title="Upcoming Session" icon={<CalendarIcon />}>
-                <p className="text-gray-600"><strong>Student:</strong> {nextSession.studentName}</p>
-                <p className="text-gray-600"><strong>Time:</strong> {nextSession.day}, {nextSession.time}</p>
-                <button className="mt-4 text-sm text-brand-primary font-semibold hover:underline">View Full Schedule</button>
+                <p className="text-neutral-medium"><strong>Student:</strong> {nextSession.studentName}</p>
+                <p className="text-neutral-medium"><strong>Time:</strong> {nextSession.day}, {nextSession.time}</p>
+                <button className="mt-4 text-sm text-primary font-bold hover:underline">View Full Schedule</button>
             </DashboardCard>
             <DashboardCard title="Total Students" icon={<UsersIcon />}>
                 <p className="text-5xl font-bold text-neutral-dark">{students.length}</p>
-                <p className="text-gray-500">Actively enrolled</p>
+                <p className="text-neutral-medium">Actively enrolled</p>
             </DashboardCard>
             <DashboardCard title="Recent Transaction" icon={<BillingIcon />}>
-                 <p className="text-gray-600"><strong>Amount:</strong> ${recentTransaction.amount.toFixed(2)}</p>
-                <p className="text-gray-600"><strong>Status:</strong> <span className="font-semibold text-green-600">{recentTransaction.status}</span></p>
-                 <button className="mt-4 text-sm text-brand-primary font-semibold hover:underline">View All Transactions</button>
+                 <p className="text-neutral-medium"><strong>Amount:</strong> ${recentTransaction.amount.toFixed(2)}</p>
+                <p className="text-neutral-medium"><strong>Status:</strong> <span className="font-bold text-green-600">{recentTransaction.status}</span></p>
+                 <button className="mt-4 text-sm text-primary font-bold hover:underline">View All Transactions</button>
             </DashboardCard>
         </div>
     );
@@ -48,18 +48,18 @@ const ParentDashboard: React.FC<{ user: User }> = ({ user }) => {
             <DashboardCard title="Most Recent Session Note" icon={<NotesIcon />}>
                 {recentNote ? (
                     <>
-                        <p className="text-gray-600"><strong>Date:</strong> {recentNote.date}</p>
-                        <p className="text-gray-600 mt-2 line-clamp-2"><strong>Notes:</strong> {recentNote.notes}</p>
-                        <button className="mt-4 text-sm text-brand-primary font-semibold hover:underline">View All Notes</button>
+                        <p className="text-neutral-medium"><strong>Date:</strong> {recentNote.date}</p>
+                        <p className="text-neutral-medium mt-2 line-clamp-2"><strong>Notes:</strong> {recentNote.notes}</p>
+                        <button className="mt-4 text-sm text-primary font-bold hover:underline">View All Notes</button>
                     </>
                 ) : <p>No session notes available for your children.</p>}
             </DashboardCard>
             <DashboardCard title="Last Payment" icon={<BillingIcon />}>
                 {lastPayment ? (
                     <>
-                        <p className="text-gray-600"><strong>Amount:</strong> ${lastPayment.amount.toFixed(2)}</p>
-                        <p className="text-gray-600"><strong>Date:</strong> {lastPayment.date}</p>
-                        <button className="mt-4 text-sm text-brand-primary font-semibold hover:underline">View Billing History</button>
+                        <p className="text-neutral-medium"><strong>Amount:</strong> ${lastPayment.amount.toFixed(2)}</p>
+                        <p className="text-neutral-medium"><strong>Date:</strong> {lastPayment.date}</p>
+                        <button className="mt-4 text-sm text-primary font-bold hover:underline">View Billing History</button>
                     </>
                 ) : <p>No payment history.</p>}
             </DashboardCard>
@@ -77,9 +77,9 @@ const StudentDashboard: React.FC<{ user: User }> = ({ user }) => {
             <DashboardCard title="Most Recent Session Note" icon={<NotesIcon />}>
                 {recentNote ? (
                     <>
-                        <p className="text-gray-600"><strong>Date:</strong> {recentNote.date}</p>
-                        <p className="text-gray-600 mt-2 line-clamp-2"><strong>Notes:</strong> {recentNote.notes}</p>
-                        <button className="mt-4 text-sm text-brand-primary font-semibold hover:underline">View All Notes</button>
+                        <p className="text-neutral-medium"><strong>Date:</strong> {recentNote.date}</p>
+                        <p className="text-neutral-medium mt-2 line-clamp-2"><strong>Notes:</strong> {recentNote.notes}</p>
+                        <button className="mt-4 text-sm text-primary font-bold hover:underline">View All Notes</button>
                     </>
                 ) : <p>No session notes available.</p>}
             </DashboardCard>
@@ -87,7 +87,7 @@ const StudentDashboard: React.FC<{ user: User }> = ({ user }) => {
                 {nextSession ? (
                     <>
                        {/* FIX: Removed reference to non-existent 'subject' property. */}
-                       <p className="text-gray-600"><strong>Time:</strong> {nextSession.day}, {nextSession.time}</p>
+                       <p className="text-neutral-medium"><strong>Time:</strong> {nextSession.day}, {nextSession.time}</p>
                     </>
                 ) : <p>No upcoming sessions scheduled.</p>}
             </DashboardCard>

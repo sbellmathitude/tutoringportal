@@ -10,7 +10,6 @@ export interface User {
   id: string;
   name:string;
   role: UserRole;
-  avatarUrl: string;
   email?: string;
   studentId?: string; // For students logging in
   studentIds?: string[]; // For parents
@@ -22,13 +21,6 @@ export interface Student {
   parentIds: string[];
   lastSession: string;
   googleSheetUrl: string;
-}
-
-// FIX: Add missing Family interface to resolve import error in MyFamily.tsx.
-export interface Family {
-  id: string;
-  parentIds: string[];
-  childIds: string[];
 }
 
 export interface SessionNote {

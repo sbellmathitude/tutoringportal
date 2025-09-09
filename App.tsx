@@ -48,7 +48,6 @@ const App: React.FC = () => {
         name: formData.parentName,
         email: formData.parentEmail,
         role: UserRole.Parent,
-        avatarUrl: `https://i.pravatar.cc/100?u=${newParentId}`,
         studentIds: newStudentIds,
     };
     
@@ -91,11 +90,11 @@ const App: React.FC = () => {
   }
 
   return (
-    <div className="flex h-screen bg-neutral-light">
+    <div className="flex h-screen bg-background">
       <Sidebar userRole={currentUser.role} activeView={activeView} setActiveView={setActiveView} />
       <div className="flex-1 flex flex-col overflow-hidden">
         <Header user={currentUser} onLogout={handleLogout} />
-        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-neutral-light p-8">
+        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-background p-8">
           {renderView()}
         </main>
       </div>
