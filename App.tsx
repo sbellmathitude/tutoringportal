@@ -1,5 +1,3 @@
-
-
 import React, { useState } from 'react';
 import { User, UserRole, Student } from './types';
 import { INITIAL_USERS, INITIAL_STUDENTS } from './constants';
